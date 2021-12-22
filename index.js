@@ -2,6 +2,7 @@ const express = require('express');
 const { isMutant } = require('./isMutant');
 const app = express();
 
+let port = process.env.PORT || 3000;
 
 app.use(express.json());
 
@@ -16,7 +17,7 @@ app.post('/mutant', (req, resp) => {
     }    
 })
 
-app.listen(3000, () => console.log("Server is running on port 3000"));
+app.listen(port, () => console.log("Server is running on port "+port));
 
 
 
