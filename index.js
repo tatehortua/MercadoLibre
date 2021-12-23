@@ -27,6 +27,41 @@ app.post('/mutant', (req, resp) => {
     }    
 })
 
+app.get('/stats', async (req, resp) =>{
+   
+    //Consultar base de datos
+
+    let respuesta = {};
+
+    let docs = await Mutant.aggregate([
+        {
+        $group: {
+            _id: '$ismutant',
+            count: { $sum: 1 }
+        }
+        }
+    ]);
+
+    // docs = [ {_id: true, count: 3}, {_id: false, count: 2} ]
+
+    for (let i = 0; i < docs.length; i++) {
+        if(docs[i]._id == true ){
+            respuesta.count_mutant_dna = docs[i].count;
+        }
+        else{
+            respuesta.count_human_dna = docs[i].count;
+        }
+        
+    }
+
+    // { count_mutant_dna: 3, count_human_dna: 2, ratio: 3/4}
+
+    respuesta.ratio = respuesta.count_mutant_dna / respuesta.count_human_dna;
+
+    resp.json(respuesta);
+
+})
+
 mongoose.connect('mongodb://127.0.0.1:27017/mutantdb', (err, db)=>{
     
     if(err){
