@@ -1,3 +1,7 @@
+while (dna = ) {
+    
+}
+
 const isMutant = (dna) => {
     let contador = 0;
     
@@ -119,4 +123,8 @@ const generateDiagonalsInversas = (input) => {
 // console.log(contador);
 
 module.exports.isMutant = isMutant;
+module.exports.findSequence = findSequence;
+module.exports.generateColumns = generateColumns;
+module.exports.generateDiagonals = generateDiagonals;
+module.exports.generateDiagonalsInversas = generateDiagonalsInversas;
 
