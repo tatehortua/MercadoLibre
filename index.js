@@ -13,7 +13,7 @@ app.post('/mutant', (req, resp) => {
     let body = req.body.dna;
 
     if(!validArray(body)){
-        return resp.status(400).send("Invalid Array, please check that the matrix is nxn");
+        return resp.status(400).send("Invalid Array, please check");
     }
 
     let mutante = isMutant(body);

@@ -53,6 +53,9 @@ Esta Api tiene dos endpoints:
 Este último comando generará un reporte HTML en la siguiente ruta: 
 `./coverage/index.html`
 
+El reporte html generado se muestra a continuación.
+![converage report](/resources/coverage.png)
+
 ## Deploy
 
 Esta api ha sido desplegada utilizando [Heroku](https://www.heroku.com/ "Heroku") y puede ser consumida en la siguiente url base:
@@ -62,4 +65,4 @@ https://ismutantchallenge.herokuapp.com
 ## Postman
 
 Se puede encontrar la colección de postman usada para el consumo de la api en la siguiente ruta:
-`./postmam/ismutant_collection.json`
+`./resources/ismutant_collection.json`
