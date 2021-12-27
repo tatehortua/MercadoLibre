@@ -9,6 +9,7 @@ Este proyecto detecta si un humano es mutante, basandose en su ADN.
 4. Para iniciar el servicio, ejecute el siguiente comando: `npm run start`. El servicio está configurado incialmente para ejectutarse en el puerto 3000
 
 Url base: `http://localhost:3000/`
+Url base heroku: `https://ismutantchallenge.herokuapp.com/`
 
 ## Api Mutant
 Esta Api tiene dos endpoints:
@@ -57,3 +58,8 @@ Este último comando generará un reporte HTML en la siguiente ruta:
 Esta api ha sido desplegada utilizando [Heroku](https://www.heroku.com/ "Heroku") y puede ser consumida en la siguiente url base:
 
 https://ismutantchallenge.herokuapp.com
+
+## Postman
+
+Se puede encontrar la colección de postman usada para el consumo de la api en la siguiente ruta:
+`./postmam/ismutant_collection.json`
