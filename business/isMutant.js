@@ -1,50 +1,42 @@
 const isMutant = (dna) => {
     let contador = 0;
-    if (!validateArray(dna)){
-        for (let i = 0; i < dna.length; i++) {
-            contador += findSequence(dna[i])
+
+    for (let i = 0; i < dna.length; i++) {
+        contador += findSequence(dna[i])
+        if(contador > 1)
+            return true;
+    }
+
+    let columns = generateColumns(dna);
+    for (let i = 0; i < columns.length; i++) {
+        contador += findSequence(columns[i])
+        if(contador > 1)
+            return true;
+    }
+
+    let diagonals = generateDiagonals(dna);
+    for (let i = 0; i < diagonals.length; i++) {
+            contador += findSequence(diagonals[i])
             if(contador > 1)
-                return true;
-        }
+                return true;  
+    }
 
-        let columns = generateColumns(dna);
-        for (let i = 0; i < columns.length; i++) {
-            contador += findSequence(columns[i])
-            if(contador > 1)
-                return true;
-        }
+    let diagonalslInversas = generateDiagonalsInversas(dna)
+    for (let i = 0; i < diagonalslInversas.length; i++) {
+        contador += findSequence(diagonalslInversas[i])
+        if(contador > 1)
+                return true;    
+    }
 
-        let diagonals = generateDiagonals(dna);
-        for (let i = 0; i < diagonals.length; i++) {
-                contador += findSequence(diagonals[i])
-                if(contador > 1)
-                    return true;  
-        }
-
-        let diagonalslInversas = generateDiagonalsInversas(dna)
-        for (let i = 0; i < diagonalslInversas.length; i++) {
-            contador += findSequence(diagonalslInversas[i])
-            if(contador > 1)
-                    return true;    
-        }
-
-        return false;
-
-    } 
-    else{
-        console.log("Array inválido")
-        return false;
-    }      
+    return false;
 }
 
 const findSequence = (input)  => {
     let contador = 0;
     for (let i = 0; i<=input.length-4; i++){
-        if (input[i] === "A" || input[i] === "T" || input[i] === "C"  || input[i] === "G"){
-            if (input[i] == input[i+1] && input[i+1] == input[i+2] && input[i+2] == input[i+3]){
-                contador ++
-                i += 3
-            }
+        if (input[i] == input[i+1] && input[i+1] == input[i+2] && input[i+2] == input[i+3]){
+            contador ++
+            i += 3
         }
     } 
     return contador;
@@ -119,15 +111,25 @@ const generateDiagonalsInversas = (input) => {
     return array;
 }
 
-const validateArray = (dna) =>{
-    var invalid = false;
+const validArray = (dna) =>{
     for (let i = 0; i < dna.length; i++) {
+        
+        if (typeof(dna[i]) != 'string' ){
+            return false;
+        }
+        
         if (dna[i].length !== dna.length){
-            var invalid = true;
-            return invalid;
+            return false;
+        }
+        
+        for (let k = 0; k<dna[i].length; k++){
+            let validLetter = dna[i][k]=== "A" || dna[i][k] === "T" || dna[i][k] === "C"  || dna[i][k] === "G";
+            if (!validLetter){
+                return false;
+            }
         }
     }
-    return false;
+    return true;
 }
 
 module.exports.isMutant = isMutant;
@@ -135,5 +137,5 @@ module.exports.findSequence = findSequence;
 module.exports.generateColumns = generateColumns;
 module.exports.generateDiagonals = generateDiagonals;
 module.exports.generateDiagonalsInversas = generateDiagonalsInversas;
-module.exports.validateArray = validateArray;
+module.exports.validArray = validArray;
 

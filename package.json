@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --reporter=text mocha",
-    "coverage": "nyc --reporter=text npm run test",
+    "test": "mocha --exit",
+    "coverage": "nyc --reporter=text --reporter=html mocha --exit",
     "start": "node index.js"
   },
   "author": "Tatiana Atehortua",

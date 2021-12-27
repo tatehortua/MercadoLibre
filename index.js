@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const { isMutant } = require('./business/isMutant');
+const { isMutant, validArray } = require('./business/isMutant');
 const { Mutant } = require('./model/mutant');
 const app = express();
 
@@ -10,6 +10,11 @@ app.use(express.json());
 
 app.post('/mutant', (req, resp) => {
     let body = req.body.dna;
+
+    if(!validArray(body)){
+        return resp.status(400).send("Invalid Array, please check that the matrix is nxn");
+    }
+
     let mutante = isMutant(body);
 
     const mutant = new Mutant();
